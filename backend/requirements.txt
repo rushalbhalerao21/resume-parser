@@ -1,0 +1,13 @@
+python-docx
+docx2txt
+pdfplumber
+google-generativeai
+click
+flask
+flask-cors
+requests
+pandas
+openpyxl
+pytest
+python-dotenv
+numpy
