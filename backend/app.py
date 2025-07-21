@@ -10,7 +10,7 @@ import aiofiles
 app = FastAPI()
 
 # Serve the temp_uploads directory and backend root for images
-app.mount("/images", StaticFiles(directory=os.path.abspath(".")), name="images")
+#app.mount("/images", StaticFiles(directory=os.path.abspath(".")), name="images")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],  # Only allow React dev server

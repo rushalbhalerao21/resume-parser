@@ -6,8 +6,15 @@ setup(
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     install_requires=[
-        'PyPDF2',  # For PDF processing
-        'pandas',   # For CSV processing
+        'fastapi',
+        'aiofiles',
+        'python-docx',
+        'docx2txt',
+        'pdfplumber',
+        'google-generativeai',
+        'numpy',
+        'Pillow',
+        'face_recognition',  # Optional, but used if available
     ],
     entry_points={
         'console_scripts': [

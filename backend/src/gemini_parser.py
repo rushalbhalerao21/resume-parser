@@ -1,4 +1,3 @@
-import requests
 import pdfplumber
 import docx2txt
 import os
@@ -88,17 +87,17 @@ def parse_resume_with_gemini(file_path):
     prompt = PROMPT_TEMPLATE.format(resume_text=resume_text)
     response = model.generate_content(prompt)
 
-    print("Response from Gemini:", response.text)
     result = response.text.strip()
-    print(f"type Response from Gemini: {type(result)}   lenght  {len(result)}")
     result = json.loads(result)
 
     # Extract face images if PDF
     ext = os.path.splitext(file_path)[1].lower()
     face_images = []
     if ext == ".pdf":
-        output_path = "../../temp_uploads"
+        output_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../FaceImage'))
+        print(f"Output path for face images: {output_path}")
         face_images = extract_face_from_pdf(file_path, output_path)
+        print(f"face_images path for face images: {face_images}")       
     result["face_images"] = face_images
     return result
 
@@ -131,7 +130,7 @@ def extract_face_from_pdf(pdf_path, output_image_path):
             face_img = img_bytes.crop((left, extended_top, right, extended_bottom))
 
             # Save the image
-            img_path = f"{output_image_path}_face{i+1}.jpg"
+            img_path = f"{output_image_path}_{i+1}.jpg"
             face_img.save(img_path)
             image_paths.append(img_path)
             print(f"Saved: {img_path}")
